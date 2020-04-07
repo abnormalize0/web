@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Main page</title>
+  </head>
+  <body>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+      <a href="http://127.0.0.1:8000/" class="navbar-brand">вапроси.рф</a>
+      <form class="form-inline">
+        <!-- <input class="form-control mr-sm-2" type="search" placeholder="поиск" aria-label="Search">
+        <button onclick="location.href='create'" class="btn btn-outline-secondary my-2 my-sm-0" type="button">Задвать вопрос!</button> -->
+      </form>
+    </nav>
+      
+      <main role="main" class="container">
+        <div class="row">
+          <div class="col-md-8 blog-main">
+          <br><br><br>
+      
+            
+            {% block content %}
+            {% endblock %}
+
+            <br>
+            <br>
+            <br>
+            
+      
+          </div><!-- /.blog-main -->
+          
+      
+          <aside class="col-md-4 blog-sidebar">
+            <div class="sticky-top">
+              <div class="p-4 mb-3 bg-light rounded">
+                <br><br>
+                {% if user.is_authenticated %}
+                  <h4 class="font-italic">Профиль</h4>
+                  
+                  <p class="mb-0">Приветствуем, {{request.user.username}}. Вы можете <a href="/ask/"> задать новый вопрос</a>, перейти к своим вопросам, или <a href="javascript:{}" onclick="document.getElementById('logout').submit(); return false;">выйти из аккаунта.</a>
+                    <form id="logout" class="logout-link" action="{% url 'logout' %}" method="post"> {% csrf_token %}</form></p>
+                {% else %}
+                  <h4 class="font-italic">Вход</h4>
+                  <p class="mb-0">Вход не был произведен. Вы можете  <a href="/login">войти</a> или <a href="/signup">зарегестрироваться</a>.</p>
+                {% endif %}
+              </div>
+        
+              <div class="p-4">
+                <h4 class="font-italic">Самые популярные теги</h4>
+                <ol class="list-unstyled mb-0">
+                  <li><a href="#">заглушка</a></li>
+                  <li><a href="#">для</a></li>
+                  <li><a href="#">тегов</a></li>
+
+                  <br>
+                  <li><a href="/tags">все теги</a></li>
+                </ol>
+              </div>
+        
+            </div>
+          </aside><!-- /.blog-sidebar -->
+      
+        </div><!-- /.row -->
+      
+      </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>

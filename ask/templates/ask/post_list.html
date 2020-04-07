@@ -1,0 +1,23 @@
+{% extends 'ask/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        {% include '../includes/card.html' %}
+    {% endfor %}
+
+    <br>
+
+    <nav class="blog-pagination">
+      {% if posts.has_previous %}
+          <a class="btn btn-outline-primary" href="?page={{ posts.previous_page_number }}" ><Older>Более новые</a>
+      {% else %}
+          <a class="btn btn-outline-secondary disabled" href="#" aria-disabled="true">Более новые</a>
+      {% endif %}
+
+      {% if posts.has_next %}
+          <a class="btn btn-outline-primary" href="?page={{ posts.next_page_number }}" >Более старые</a>
+      {% else %}
+          <a class="btn btn-outline-secondary disabled" href="#" aria-disabled="true">Более старые</a>
+      {% endif %}
+    </nav>
+{% endblock %}
